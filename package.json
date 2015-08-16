@@ -1,0 +1,21 @@
+{
+  "name": "pocket-reader",
+  "version": "0.1.0",
+  "description": "pocket epub reader",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pocket",
+    "epub",
+    "reader"
+  ],
+  "author": "Jose Albizures",
+  "license": " ",
+  "dependencies": {
+    "connect": "^3.4.0",
+    "connect-route": "^0.1.5",
+    "serve-static": "^1.10.0"
+  }
+}
