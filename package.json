@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build" : "browserify -t babelify client/app.js > public/js/blundle.js"
+    "build": "browserify -t babelify client/app.js > public/js/bundle.js"
   },
   "keywords": [
     "pocket",
@@ -17,6 +17,9 @@
   "dependencies": {
     "connect": "^3.4.0",
     "connect-route": "^0.1.5",
+    "epub": "^0.1.6",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3",
     "serve-static": "^1.10.0"
   },
   "devDependencies": {
