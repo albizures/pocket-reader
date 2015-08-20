@@ -1,75 +1,32 @@
 
+import utils from './utils';
+
 import React from 'react';
-import { Router, Route, Link } from 'react-router';
-import { history } from 'react-router/lib/History';
+import Router from 'react-router'
+var { RouteHandler ,DefaultRoute , Route, Link } = Router;
 
 var App = React.createClass({
-  render(){
-    return (
-      <div className="detail">
-        {this.props.children}
-      </div>
-    );
+  render (){
+    return (<div>
+        Holla
+        <p><Link to="/">Back</Link></p>
+        <p><Link to="second">Second</Link></p>
+      </div>)
   }
 });
-var About = React.createClass({
-  render(){
-    return <div>pureba</div>
+var Second = React.createClass({
+  render (){
+    return <div>Second lala </div>
   }
-});
-var Users = React.createClass({
-  componentDidMount() {
-    this.setState({
-      // route components are rendered with useful information, like URL params
-      users: [{id:1, name : 'aaa'}] 
-    });
-  },
-  render() {
-    return (
-      <div>
-        <h1>Users</h1>
-        <div className="master">
-          <ul>
-            {/* use Link to route around the app */}
-            {this.state.users.map(user => (
-              <li><Link to={`/users/${users.id}`}>{user.name}</Link></li>
-            ))}
-          </ul>
-        </div>
-        <div className="detail">
-          {this.props.children}
-        </div>
-      </div>
-    );
-  }
-});
-
-var User = React.createClass({
-  componentDidMount() {
-    this.setState({
-      // route components are rendered with useful information, like URL params
-      user: findUserById(this.props.params.userId)
-    });
-  },
-
-  render() {
-    return (
-      <div>
-        <h2>{this.state.user.name}</h2>
-        {/* etc. */}
-      </div>
-    );
-  }
-});
+})
 
 
-React.render((
-  <Router history={history}>
-    <Route path="/" component={App}>
-      <Route path="about" component={About}/>
-      <Route path="users" component={Users}>
-        <Route path="/user/:userId" component={User}/>
-      </Route>
-    </Route>
-  </Router>
-), document.body);
+var routes = (
+  <Route name="main" path="/" handler={App}>
+    <DefaultRoute name="second" handler={Second}/>
+  </Route>
+);
+
+Router.run(routes,(Handler) => {
+  React.render(<Handler/>,document.getElementById('app'));
+})
