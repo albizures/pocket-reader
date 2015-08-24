@@ -19,10 +19,10 @@ var a = new Epub('aadsfasdfafd.epub','/img/','/chapters/');
 // mongo.parse();
 //a.parse();
 
-module.exports = function (req,res) {
+/*module.exports*/var foo = function (req,res) {
 	var pathFile = path.join(__dirname,req.params.name + '.epub');
 	fs.stat(pathFile,function (err,stat) {
-		if(err) return res.end('no existe');
+		if(err) return res.end('not exist');
 
 		var book = new Epub(pathFile);
 		book.on('end',function () {
@@ -31,4 +31,15 @@ module.exports = function (req,res) {
 		});
 		book.parse();
 	})
+}
+
+var books = {books:[
+	{id : 1, name : 'a'},
+	{id : 2, name : 'alice'},
+	{id : 3, name : 'mog'}
+]}
+module.exports = {
+	getAll : function (callback) {
+		if(typeof callback === 'function') callback(JSON.stringify(books));
+	}
 }

@@ -3,30 +3,28 @@ import utils from './utils';
 
 import React from 'react';
 import Router from 'react-router'
-var { RouteHandler ,DefaultRoute , Route, Link } = Router;
+
+import BookList from './components/BookList';
+import BookActions from './stores/BookStore';
+
+let { RouteHandler ,DefaultRoute , Route, Link } = Router;
 
 var App = React.createClass({
   render (){
     return (<div>
         Holla
-        <p><Link to="/">Back</Link></p>
-        <p><Link to="second">Second</Link></p>
+        <RouteHandler {...this.props}/>
       </div>)
   }
 });
-var Second = React.createClass({
-  render (){
-    return <div>Second lala </div>
-  }
-})
-
 
 var routes = (
   <Route name="main" path="/" handler={App}>
-    <DefaultRoute name="second" handler={Second}/>
+    <DefaultRoute name="list" handler={BookList}/>
   </Route>
 );
 
 Router.run(routes,(Handler) => {
+  //BookActions.fetchBooks();
   React.render(<Handler/>,document.getElementById('app'));
 })
